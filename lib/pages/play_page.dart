@@ -3,18 +3,19 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:game_flutter/pages/control_panel.dart';
-import '../direction.dart';
-import '../piece.dart';
+import 'package:game_flutter/components/app_bar/custom_app_bar.dart';
+import 'package:game_flutter/pages/control_page.dart';
+import '../sevices/direction.dart';
+import '../sevices/piece.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class PlayPage extends StatefulWidget {
+  const PlayPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<PlayPage> createState() => _PlayPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _PlayPageState extends State<PlayPage> {
   late int upperBoundX, upperBoundY, lowerBoundX, lowerBoundY;
   late double screenWidth, screenHeight;
   int step = 30;
@@ -38,7 +39,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget getControls() {
-    return ControlPanel(onTapped: (Direction newDirection) {
+    return ControlPage(onTapped: (Direction newDirection) {
       direction = newDirection;
     });
   }
@@ -218,12 +219,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   getScore() {
-    return Positioned(
+    return const Positioned(
         top: 10.0,
         right: 20.0,
         child: Text(
-          "Score: $score",
-          style: const TextStyle(fontSize: 30.0, color: Colors.green),
+          '',
+          style: TextStyle(fontSize: 30.0, color: Colors.green),
         ));
   }
 
@@ -237,6 +238,12 @@ class _HomePageState extends State<HomePage> {
     upperBoundY = getNearestTens(screenHeight.toInt() - step);
     upperBoundX = getNearestTens(screenWidth.toInt() - step);
     return Scaffold(
+      appBar: CustomAppBar(
+          color: Colors.yellow.withOpacity(0.1),
+          title: ' Score: $score',
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+          )),
       body: Container(
         color: Colors.white,
         child: Stack(

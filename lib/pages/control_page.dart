@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:game_flutter/direction.dart';
-import 'package:game_flutter/pages/control_button.dart';
+import 'package:game_flutter/sevices/direction.dart';
+import 'package:game_flutter/components/buttom/control_button.dart';
 
-class ControlPanel extends StatelessWidget {
-  const ControlPanel({super.key, required this.onTapped});
+class ControlPage extends StatelessWidget {
+  const ControlPage({super.key, required this.onTapped});
   final void Function(Direction direction) onTapped;
   @override
   Widget build(BuildContext context) {
